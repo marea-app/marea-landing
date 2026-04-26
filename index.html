@@ -219,6 +219,32 @@
   .btn-primary i { width: 16px; height: 16px; pointer-events: none; }
   .btn-primary i svg { pointer-events: none; }
 
+  /* Consentimiento RGPD */
+  .form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+  .form-consent input[type="checkbox"] {
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--accent-warm);
+    cursor: pointer;
+  }
+  .form-consent label { cursor: pointer; }
+  .form-consent a {
+    color: var(--accent-warm);
+    text-decoration: underline;
+    font-weight: 500;
+  }
+  .form-consent a:hover { color: var(--accent-warm-hi); }
+
   .hero-trust {
     display: flex;
     gap: 18px;
@@ -765,12 +791,22 @@
         refunds reales y mediación humana cuando algo falla. Sin asteriscos.
       </p>
 
-      <form class="hero-form" id="waitlist-form-hero" onsubmit="handleWaitlist(event)">
-        <input type="email" name="email" placeholder="tu@email.com" required>
-        <button class="btn-primary" type="submit">
-          Sumarme a la lista
-          <i data-lucide="arrow-right"></i>
-        </button>
+      <form id="waitlist-form-hero" onsubmit="handleWaitlist(event)">
+        <div class="hero-form">
+          <input type="email" name="email" placeholder="tu@email.com" required>
+          <button class="btn-primary" type="submit">
+            Sumarme a la lista
+            <i data-lucide="arrow-right"></i>
+          </button>
+        </div>
+        <div class="form-consent">
+          <input type="checkbox" id="consent-hero" name="consent" required>
+          <label for="consent-hero">
+            Acepto la <a href="/legal/privacidad.html" target="_blank">política de privacidad</a>
+            y consiento recibir comunicaciones sobre el lanzamiento de Marea. Responsable:
+            Maximiliano Marca (NIE Z0991709T). Podés darte de baja cuando quieras.
+          </label>
+        </div>
       </form>
 
       <div class="hero-trust">
@@ -996,12 +1032,22 @@
         Estamos en beta privada con los primeros propietarios e inquilinos del Mediterráneo.
         Dejanos tu email y te avisamos cuando podés sumarte.
       </p>
-      <form class="final-form" id="waitlist-form-final" onsubmit="handleWaitlist(event)">
-        <input type="email" name="email" placeholder="tu@email.com" required>
-        <button class="btn-primary" type="submit">
-          Avisame
-          <i data-lucide="bell"></i>
-        </button>
+      <form id="waitlist-form-final" onsubmit="handleWaitlist(event)">
+        <div class="final-form">
+          <input type="email" name="email" placeholder="tu@email.com" required>
+          <button class="btn-primary" type="submit">
+            Avisame
+            <i data-lucide="bell"></i>
+          </button>
+        </div>
+        <div class="form-consent" style="max-width:520px;margin:8px auto 0">
+          <input type="checkbox" id="consent-final" name="consent" required>
+          <label for="consent-final">
+            Acepto la <a href="/legal/privacidad.html" target="_blank">política de privacidad</a>
+            y consiento recibir comunicaciones sobre el lanzamiento. Responsable:
+            Maximiliano Marca (NIE Z0991709T).
+          </label>
+        </div>
       </form>
     </div>
   </div>
@@ -1032,9 +1078,9 @@
       <div class="footer-col">
         <h4>Legal</h4>
         <ul>
-          <li><a href="#">Aviso legal</a></li>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Cookies</a></li>
+          <li><a href="/legal/aviso-legal.html">Aviso legal</a></li>
+          <li><a href="/legal/privacidad.html">Privacidad</a></li>
+          <li><a href="/legal/cookies.html">Cookies</a></li>
         </ul>
       </div>
       <div class="footer-col">
