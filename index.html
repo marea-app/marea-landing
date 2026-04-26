@@ -1067,23 +1067,41 @@
 <script>
   lucide.createIcons();
 
-  // Waitlist form handler
-  function handleWaitlist(event) {
+  // Waitlist form handler — envía a Formspree (form ID: myklvabd)
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myklvabd';
+
+  async function handleWaitlist(event) {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Enviando…';
 
-    // TODO: configurar endpoint real (Formspree / Netlify Forms / API propio)
-    // Mientras tanto, simulamos confirmación visual + log a consola
-    console.log('Waitlist signup:', email);
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form),
+      });
 
-    // Mostrar toast
-    const toast = document.getElementById('toast');
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 4000);
-
-    // Reset form
-    form.reset();
+      if (response.ok) {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 4000);
+        form.reset();
+      } else {
+        const data = await response.json().catch(() => ({}));
+        const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'No pudimos guardar tu email. Probá de nuevo.';
+        alert(msg);
+      }
+    } catch (err) {
+      alert('Error de red. Verificá tu conexión y probá de nuevo.');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHTML;
+    }
   }
 
   // Smooth scroll para anchors
