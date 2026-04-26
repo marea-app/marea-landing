@@ -104,6 +104,11 @@
     transition: color 0.15s;
   }
   .nav-links a:hover { color: var(--brand-primary); }
+  .nav-links .nav-cta {
+    color: var(--coral);
+    font-weight: 600;
+  }
+  .nav-links .nav-cta:hover { color: var(--coral); text-decoration: underline; }
   .nav-spacer { flex: 1; }
   .badge-soon {
     background: var(--bg-warm-tint);
@@ -771,6 +776,7 @@
       <a href="#diferenciadores">Por qué Marea</a>
       <a href="#como-funciona">Cómo funciona</a>
       <a href="#para-quien">Para quién</a>
+      <a href="https://app.mareayates.com/buscar" class="nav-cta">Ver catálogo →</a>
     </div>
     <div class="nav-spacer"></div>
     <span class="badge-soon">Beta privada · otoño 2026</span>
@@ -789,6 +795,22 @@
       <p class="hero-sub">
         Alquilá embarcaciones del Mediterráneo con comisiones transparentes,
         refunds reales y mediación humana cuando algo falla. Sin asteriscos.
+      </p>
+
+      <div class="hero-cta-row" style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <a href="https://app.mareayates.com/buscar"
+           style="height:44px;padding:0 22px;background:var(--brand-primary);color:#fff;
+                  border-radius:10px;font-weight:600;text-decoration:none;
+                  display:inline-flex;align-items:center;gap:8px;
+                  box-shadow:0 2px 8px rgba(11,60,93,0.18);transition:all 0.2s;"
+           onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 12px rgba(11,60,93,0.28)'"
+           onmouseout="this.style.transform='';this.style.boxShadow='0 2px 8px rgba(11,60,93,0.18)'">
+          Ver barcos disponibles
+          <i data-lucide="arrow-right" style="width:16px;height:16px;"></i>
+        </a>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);margin:-4px 0 16px;">
+        ¿Querés saber cuándo abrimos las reservas reales? Dejá tu email:
       </p>
 
       <form id="waitlist-form-hero" onsubmit="handleWaitlist(event)">
