@@ -1186,5 +1186,31 @@
     });
   });
 </script>
+
+<!-- WhatsApp flotante. Para activar: reemplazar el placeholder en data-number por el numero real (E.164 sin signos, ej: 34600000000). Si se borra el atributo o queda vacio, no se renderiza. -->
+<a id="wa-fab"
+   href="#"
+   target="_blank"
+   rel="noopener noreferrer"
+   aria-label="Chatear por WhatsApp"
+   data-number=""
+   data-message="Hola Marea, vi su web y tengo una consulta sobre el alquiler de barcos."
+   style="display:none;position:fixed;bottom:20px;right:20px;z-index:9999;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(37,211,102,0.4);text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;">
+  <i data-lucide="message-circle" style="width:28px;height:28px;"></i>
+</a>
+<script>
+  (function(){
+    var fab = document.getElementById('wa-fab');
+    if (!fab) return;
+    var num = (fab.dataset.number || '').replace(/\D/g,'');
+    if (!num) return;
+    var msg = encodeURIComponent(fab.dataset.message || '');
+    fab.href = 'https://wa.me/' + num + '?text=' + msg;
+    fab.style.display = 'inline-flex';
+    fab.addEventListener('mouseenter', function(){ fab.style.transform='scale(1.1)'; });
+    fab.addEventListener('mouseleave', function(){ fab.style.transform='scale(1)'; });
+    if (window.lucide && typeof window.lucide.createIcons === 'function') window.lucide.createIcons();
+  })();
+</script>
 </body>
 </html>
