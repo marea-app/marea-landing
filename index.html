@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0B3C5D">
 <title>Marea — El mar, sin letra pequeña</title>
-<meta name="description" content="Plataforma de alquiler de embarcaciones del Mediterráneo. Comisiones transparentes, refunds reales y mediación humana. Lanzamiento otoño 2026.">
+<meta name="description" content="Plataforma de alquiler de embarcaciones del Mediterráneo. Comisiones transparentes, refunds reales y mediación humana. Lanzamiento junio 2026.">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Marea — El mar, sin letra pequeña">
@@ -524,7 +524,7 @@
   /* DUAL CTAS */
   .dual-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
     gap: 24px;
   }
   .dual-card {
@@ -658,6 +658,37 @@
     font-size: 15px;
   }
   .final-form input::placeholder { color: rgba(255,255,255,0.6); }
+  .final-interest {
+    max-width: 540px;
+    margin: 0 auto 12px;
+    text-align: left;
+  }
+  .final-interest label {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .final-interest select {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 42px;
+  }
+  .final-interest select:focus { outline: 2px solid var(--accent-warm); outline-offset: 2px; }
+  .final-interest select option { background: var(--brand-primary); color: #fff; }
 
   /* FOOTER */
   footer.footer {
@@ -779,7 +810,7 @@
       <a href="https://app.mareayates.com/buscar" class="nav-cta">Ver catálogo →</a>
     </div>
     <div class="nav-spacer"></div>
-    <span class="badge-soon">Beta privada · otoño 2026</span>
+    <span class="badge-soon">Apertura · junio 2026</span>
   </div>
 </nav>
 
@@ -834,7 +865,7 @@
       <div class="hero-trust">
         <span class="ti"><i data-lucide="check-circle"></i> Sin compromiso</span>
         <span class="ti"><i data-lucide="check-circle"></i> 0 spam</span>
-        <span class="ti"><i data-lucide="check-circle"></i> Lanzamiento en otoño 2026</span>
+        <span class="ti"><i data-lucide="check-circle"></i> Apertura junio 2026 — temporada lista</span>
       </div>
     </div>
 
@@ -1016,7 +1047,7 @@
           <li><i data-lucide="check"></i>Filtrado fuerte de inquilinos con titulación verificada</li>
           <li><i data-lucide="check"></i>Mediación profesional en disputas</li>
         </ul>
-        <a href="#waitlist-final" class="btn-secondary">
+        <a href="#waitlist-final" class="btn-secondary" data-interest="owner" onclick="setInterest('owner')">
           Sumarme como propietario
           <i data-lucide="arrow-right"></i>
         </a>
@@ -1036,8 +1067,28 @@
           <li><i data-lucide="check"></i>Modalidad con o sin patrón profesional</li>
           <li><i data-lucide="check"></i>Atención humana, no chatbots genéricos</li>
         </ul>
-        <a href="#waitlist-final" class="btn-secondary">
+        <a href="#waitlist-final" class="btn-secondary" data-interest="renter" onclick="setInterest('renter')">
           Sumarme como inquilino
+          <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="dual-card">
+        <div class="dual-icon"><i data-lucide="compass"></i></div>
+        <h3>Sos patrón o capitán</h3>
+        <p>
+          Tenés titulación náutica y querés llenar tus días de trabajo. Marea te conecta
+          con propietarios e inquilinos que necesitan un patrón profesional para sus salidas.
+        </p>
+        <ul class="dual-list">
+          <li><i data-lucide="check"></i>Publicás tu disponibilidad y zonas de operación</li>
+          <li><i data-lucide="check"></i>Verificación de titulación (PER, PY, capitán)</li>
+          <li><i data-lucide="check"></i>Pago directo a tu cuenta vía Stripe</li>
+          <li><i data-lucide="check"></i>Reservas con check-in/out digital firmado</li>
+          <li><i data-lucide="check"></i>Mediación humana en disputas</li>
+        </ul>
+        <a href="#waitlist-final" class="btn-secondary" data-interest="skipper" onclick="setInterest('skipper')">
+          Sumarme como patrón
           <i data-lucide="arrow-right"></i>
         </a>
       </div>
@@ -1049,12 +1100,21 @@
 <section class="section" id="waitlist-final">
   <div class="final-cta">
     <div class="final-cta-inner">
-      <h2>Lanzamiento previsto: otoño 2026</h2>
+      <h2>Apertura junio 2026 — a tiempo para esta temporada</h2>
       <p>
-        Estamos en beta privada con los primeros propietarios e inquilinos del Mediterráneo.
-        Dejanos tu email y te avisamos cuando podés sumarte.
+        Estamos cerrando los primeros barcos, patrones e inquilinos del Mediterráneo
+        para abrir en junio 2026. Dejanos tu email y reservás tu lugar para esta temporada.
       </p>
       <form id="waitlist-form-final" onsubmit="handleWaitlist(event)">
+        <div class="final-interest">
+          <label for="interest-final">Sumate como</label>
+          <select id="interest-final" name="interest" required>
+            <option value="">Elegí una opción</option>
+            <option value="owner">Propietario de barco</option>
+            <option value="renter">Quiero alquilar</option>
+            <option value="skipper">Patrón / capitán</option>
+          </select>
+        </div>
         <div class="final-form">
           <input type="email" name="email" placeholder="tu@email.com" required>
           <button class="btn-primary" type="submit">
@@ -1139,20 +1199,39 @@
   // Waitlist form handler — envía a Formspree (form ID: myklvabd)
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/myklvabd';
 
+  // Pre-selecciona el rol cuando el usuario clickea un CTA específico
+  function setInterest(role) {
+    const select = document.getElementById('interest-final');
+    if (select) select.value = role;
+  }
+
+  // Etiqueta amigable para el subject del email a Formspree
+  const INTEREST_LABEL = {
+    owner: 'Propietario',
+    renter: 'Inquilino',
+    skipper: 'Patrón / capitán',
+  };
+
   async function handleWaitlist(event) {
     event.preventDefault();
     const form = event.target;
-    const email = form.email.value;
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalBtnHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'Enviando…';
 
     try {
+      const formData = new FormData(form);
+      const interest = formData.get('interest');
+      if (interest) {
+        formData.set('_subject', `Waitlist Marea — ${INTEREST_LABEL[interest] || interest}`);
+      } else {
+        formData.set('_subject', 'Waitlist Marea — sin clasificar');
+      }
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
-        body: new FormData(form),
+        body: formData,
       });
 
       if (response.ok) {
